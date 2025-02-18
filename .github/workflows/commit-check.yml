@@ -1,0 +1,20 @@
+name: Conventional Commits Checker
+
+on:
+  pull_request:
+    branches:
+      - main  # Adjust this if your default branch has a different name
+
+jobs:
+  check-commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Conventional Commits Checker
+        uses: wagoid/commitlint-github-action@v4
+        with:
+          failOnWarnings: true
+          helpMessage: 'Please follow Conventional Commits guidelines!'
