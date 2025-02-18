@@ -22,4 +22,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Check git log
-        run: git log --oneline
+        run: git log --oneline #update
