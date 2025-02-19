@@ -27,9 +27,13 @@ jobs:
       - name: Create and Load Environment Variables
         run: |
           cp .env.example .env
-          set -a
-          source .env
-          set +a
+          while IFS='=' read -r key value
+          do
+            # Remove quotes around the value
+            value=${value%\"}
+            value=${value#\"}
+            echo "$key=$value" >> $GITHUB_ENV
+          done < .env
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
