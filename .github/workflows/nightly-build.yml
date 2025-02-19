@@ -3,6 +3,7 @@ name: Nightly Build
 on:
   schedule:
     - cron: '*/5 * * * *'  # Runs at 12:00 AM UTC every day
+  workflow_dispatch:
 
 jobs:
   build:
