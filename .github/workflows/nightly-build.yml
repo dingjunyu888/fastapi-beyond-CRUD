@@ -31,19 +31,10 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run --rm \
-            -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
-            -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
-            -e JWT_ALGORITHM=${{ secrets.JWT_ALGORITHM }} \
-            -e MAIL_USERNAME=${{ secrets.MAIL_USERNAME }} \
-            -e MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }} \
-            -e MAIL_FROM=${{ secrets.MAIL_FROM }} \
-            -e MAIL_PORT=${{ secrets.MAIL_PORT }} \  # Or directly `-e MAIL_PORT=587` if not secret
-            -e MAIL_SERVER=${{ secrets.MAIL_SERVER }} \
-            -e MAIL_FROM_NAME=${{ secrets.MAIL_FROM_NAME }} \
-            -e DOMAIN=${{ secrets.DOMAIN }} \
-            dingjunyu888/nightly-build:latest \
-            python -m pytest
+          source env/bin/activate
+          pip install pytest
+          pytest src/tests/
+          
       - name: Notify on failure
         if: failure()
         uses: dawidd6/action-send-mail@v3
