@@ -12,9 +12,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Conventional Commits Checker
         uses: wagoid/commitlint-github-action@v4
         with:
           failOnWarnings: true
-          helpMessage: 'Please follow Conventional Commits guidelines!'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Check git log
+        run: git log --oneline #another update
