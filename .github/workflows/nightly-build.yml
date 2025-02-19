@@ -2,7 +2,7 @@ name: Nightly Build
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Runs at 12:00 AM UTC every day
+    - cron: '0 0 * * *'  # Runs at 12:00 AM UTC every day
   workflow_dispatch:
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
             -e MAIL_USERNAME=${{ secrets.MAIL_USERNAME }} \
             -e MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }} \
             -e MAIL_FROM=${{ secrets.MAIL_FROM }} \
-            -e MAIL_PORT=${{ secrets.MAIL_PORT }} \
+            -e MAIL_PORT=${{ secrets.MAIL_PORT }} \  # Or directly `-e MAIL_PORT=587` if not secret
             -e MAIL_SERVER=${{ secrets.MAIL_SERVER }} \
             -e MAIL_FROM_NAME=${{ secrets.MAIL_FROM_NAME }} \
             -e DOMAIN=${{ secrets.DOMAIN }} \
