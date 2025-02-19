@@ -11,11 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Check Conventional Commits
-        uses: TiagoDanin/Action-Conventional-Commits@v1
-        id: check-commits
+      - name: Conventional Commits Checker
+        uses: wagoid/commitlint-github-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          failOnWarnings: true
+          token: ${{ secrets.GITHUB_TOKEN }}  # Make sure to include this if necessary
 
       - name: Send Email Notification on Failure
         if: failure()
