@@ -8,18 +8,27 @@ on:
 jobs:
   check-commits:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v2
 
-      - name: Conventional Commits Checker
-        uses: wagoid/commitlint-github-action@v4
+      - name: Check Conventional Commits
+        uses: amannn/action-conventional-commits@v2
+        id: check-commits
         with:
-          failOnWarnings: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Check git log
-        run: git log --oneline #another update
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send Email Notification on Failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.ethereal.email
+          server_port: 587
+          username: katheryn.oberbrunner@ethereal.email
+          password: 4tPzNRHMvDDJFuYk1h
+          subject: Conventional Commits Check Failed
+          body: |
+            The Conventional Commits check has failed for the pull request.
+            Please ensure your commit messages follow the Conventional Commits specification.
+            For more details, visit: https://www.conventionalcommits.org
+          to: dingjunyu888@gmail.com  # Replace with the recipient email
+          from: katheryn.oberbrunner@ethereal.email
