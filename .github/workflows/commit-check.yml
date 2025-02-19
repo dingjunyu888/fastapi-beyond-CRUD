@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Check Conventional Commits
-        uses: amannn/action-conventional-commits@v2
+        uses: TiagoDanin/Action-Conventional-Commits@v1
         id: check-commits
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
