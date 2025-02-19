@@ -41,6 +41,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Nightly Build Failed
           body: The nightly build and test of your application failed.
-          to: user@example.com
+          to: dingjunyu888@gmail.com
           from: ${{ secrets.MAIL_USERNAME }}
           secure: false
