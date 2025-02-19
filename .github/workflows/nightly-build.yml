@@ -30,7 +30,7 @@ jobs:
           tags: dingjunyu888/nightly-build
 
       - name: Run tests
-        run: docker run --rm dingjunyu888/nightly-build pytest
+        run: docker run --rm dingjunyu888/nightly-build python -m pytest
 
       - name: Notify on failure
         if: failure()
