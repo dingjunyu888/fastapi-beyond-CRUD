@@ -27,10 +27,10 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: yourusername/yourapp:latest
+          tags: dingjunyu888/nightly-build
 
       - name: Run tests
-        run: docker run --rm yourusername/yourapp:latest /path/to/your/tests
+        run: docker run --rm dingjunyu888/nightly-build pytest
 
       - name: Notify on failure
         if: failure()
