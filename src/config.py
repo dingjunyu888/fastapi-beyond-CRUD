@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     MAIL_USERNAME: str
     MAIL_PASSWORD: str
     MAIL_FROM: str
-    MAIL_PORT: int = 587
+    MAIL_PORT: int
     MAIL_SERVER: str
     MAIL_FROM_NAME: str
     MAIL_STARTTLS: bool = True
@@ -18,11 +18,8 @@ class Settings(BaseSettings):
     USE_CREDENTIALS: bool = True
     VALIDATE_CERTS: bool = True
     DOMAIN: str
-    
-    class Config:
-        env_file = ".env"
-        env_file_encoding = 'utf-8'
-        extra = 'ignore'
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
 
 Config = Settings()
 
