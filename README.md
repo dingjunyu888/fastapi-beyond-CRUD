@@ -75,17 +75,24 @@ Run the tests using this command
 ```bash
 pytest
 ```
-## GitHub Actions
 
-This project uses GitHub Actions to enforce Conventional Commits and to run nightly builds.
+## Changes
 
-### Conventional Commits
+### 1. Added GitHub Actions
+- Added `commit-check.yml` and `nightly-build.yml` workflows.
+- **Enforce Conventional Commits on PRs**: Ensures all pull requests follow the Conventional Commits specification.
+- **Automate Nightly Builds**: Nightly builds are scheduled to run at 12 AM SF time (cron: `"0 8 * * *"`).
+- **Failure Notifications**: Sends email notifications for PR and test failures.
 
-All pull requests must follow the Conventional Commits specification. The GitHub Actions workflow will automatically check this.
+### 2. Updated `compose.yml` and `Dockerfile`
+- **Runs without extra downloads**: The application can be started with `docker compose up` without requiring additional downloads.
+- **Automatically loads environment variables**: Environment variables are loaded seamlessly for Docker containers.
 
-### Nightly Builds
+### 3. Modified `.env.example`
+- Added required configuration for environment variables to ensure smooth setup.
 
-Nightly builds are scheduled to run at 12am every day. If the build fails, an email notification will be sent.
+### 4. Integrated Email Notifications
+- **SendGrid Email**: Failure alerts are sent via SendGrid for PRs, test failures, and nightly build issues.
 
 
 ## Contributing
