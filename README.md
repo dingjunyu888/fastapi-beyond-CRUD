@@ -75,6 +75,18 @@ Run the tests using this command
 ```bash
 pytest
 ```
+## GitHub Actions
+
+This project uses GitHub Actions to enforce Conventional Commits and to run nightly builds.
+
+### Conventional Commits
+
+All pull requests must follow the Conventional Commits specification. The GitHub Actions workflow will automatically check this.
+
+### Nightly Builds
+
+Nightly builds are scheduled to run at 12am every day. If the build fails, an email notification will be sent.
+
 
 ## Contributing
 I welcome contributions to improve the documentation! You can contribute [here](https://github.com/jod35/fastapi-beyond-crud-docs).
