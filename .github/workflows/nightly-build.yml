@@ -42,7 +42,7 @@ jobs:
             -e MAIL_SERVER=${{ secrets.MAIL_SERVER }} \
             -e MAIL_FROM_NAME=${{ secrets.MAIL_FROM_NAME }} \
             -e DOMAIN=${{ secrets.DOMAIN }} \
-            dingjunyu888/fastapi-beyond-crud:latest \
+            dingjunyu888/nightly-build:latest \
             python -m pytest
       - name: Notify on failure
         if: failure()
