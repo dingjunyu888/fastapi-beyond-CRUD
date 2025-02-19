@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -23,6 +23,12 @@ jobs:
           source env/bin/activate
           pip install --upgrade pip
           pip install -r requirements.txt
+      
+      - name: Create and Load Environment Variables
+        run: |
+          cp .env.example .env
+          export $(grep -v '^#' .env | xargs) 
+          cat .env | sed 's/^/echo "/; s/$/" >> $GITHUB_ENV/' | bash
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
